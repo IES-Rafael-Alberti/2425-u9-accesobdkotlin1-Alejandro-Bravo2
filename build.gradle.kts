@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    runtimeOnly("com.h2database:h2:2.3.232")
+    implementation("com.zaxxer:HikariCP:5.0.0")
 }
 
 tasks.test {
