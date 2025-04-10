@@ -1,7 +1,7 @@
 package Actividad5
 
-import org.example.Actividad2.BaseDatos
 import java.sql.Connection
+import java.sql.DriverManager
 import java.sql.SQLException
 
 fun main(){
@@ -11,32 +11,70 @@ fun main(){
 
 
     if (conexion is Connection) {
-        // MODIFICAR EL PRECIO DEL PRODUCTO
         val producto = "Abanico"
-        try {
-            val queryModificarPrecioProducto = conexion.prepareStatement("UPDATE PRODUCTO set precio = precio * 0.8 where nombre ILIKE ?;")
-            queryModificarPrecioProducto.setString(1, producto)
-            queryModificarPrecioProducto.executeUpdate()
-            println("Modificación del precio exitosa")
-        } catch (e: SQLException) {
-            println("No se ha podido modificar el precio del producto por uno nuevo...")
+        val resultadoModificarPrecio = baseDatos.modificarPrecioProducto(conexion, producto)
+
+        if (resultadoModificarPrecio) {
+            println("Precio modificado exitosamente")
+        } else{
+            println("Error, no se ha podido modificar el precio")
         }
 
-
-        // MODIFICAR ID
         val nuevaIdProducto = 2
-        try {
-            val queryModificarIdProducto = conexion.prepareStatement("UPDATE LINEAPEDIDO set idproducto = ?, precio = (select precio from producto where nombre ILIKE ?) * 2 where idproducto = (select id from producto where nombre ILIKE ?);")
-            queryModificarIdProducto.setInt(1, nuevaIdProducto)
-            queryModificarIdProducto.setString(2, producto)
-            queryModificarIdProducto.setString(3, producto)
-            queryModificarIdProducto.executeUpdate()
-            println("Modificación del id producta exitosa")
-        } catch (e: SQLException) {
-            println("No se ha podido modificar el id del producto por uno nuevo...")
+        val resultadoModificacionId = baseDatos.modificarIdProducto(conexion, nuevaIdProducto, producto)
+        if (resultadoModificacionId) {
+            println("ID modificado exitosamente")
+        } else{
+            print("Error, no podido modificar el ID")
         }
 
 
     }
 
+}
+
+
+
+class BaseDatos(){
+    fun conectarseBaseDatos(url : String) : Connection?{
+        var conexion : Connection? = null
+        try {
+            Class.forName("org.h2.Driver")
+            conexion = DriverManager.getConnection(url)
+            println("Conexión exitosa")
+        } catch (e: SQLException) {
+            println("No se encontró el driver jdbc: ${e.message}")
+        } catch (e: ClassNotFoundException) {
+            println("No se encontró el driver jdbc: ${e.message}")
+        }
+
+        return conexion
+    }
+    fun modificarPrecioProducto(conexion: Connection, producto: String) : Boolean {
+        try {
+            val queryModificarPrecioProducto =
+                conexion.prepareStatement("UPDATE PRODUCTO set precio = precio * 0.8 where nombre ILIKE ?;")
+            queryModificarPrecioProducto.setString(1, producto)
+            queryModificarPrecioProducto.executeUpdate()
+        } catch (e: SQLException) {
+            return false
+        }
+        return true
+    }
+
+
+    fun modificarIdProducto(conexion: Connection, nuevaIdProducto: Int, producto: String) : Boolean {
+        try {
+            val queryModificarIdProducto =
+                conexion.prepareStatement("UPDATE LINEAPEDIDO set idproducto = ?, precio = (select precio from producto where nombre ILIKE ?) * 2 where idproducto = (select id from producto where nombre ILIKE ?);")
+            queryModificarIdProducto.setInt(1, nuevaIdProducto)
+            queryModificarIdProducto.setString(2, producto)
+            queryModificarIdProducto.setString(3, producto)
+            queryModificarIdProducto.executeUpdate()
+        } catch (e: SQLException) {
+            println("No se ha podido modificar el id del producto por uno nuevo...")
+            return false
+        }
+        return true
+    }
 }

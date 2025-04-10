@@ -169,7 +169,7 @@
     <schema id="162" parent="2" name="INFORMATION_SCHEMA"/>
     <schema id="163" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-04-10.15:27:30</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-04-10.15:40:45</LastIntrospectionLocalTimestamp>
     </schema>
     <table id="164" parent="163" name="LINEAPEDIDO"/>
     <table id="165" parent="163" name="PEDIDO"/>
@@ -337,19 +337,10 @@
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="196" parent="167" name="CONSTRAINT_INDEX_2">
-      <ColNames>EMAIL</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
-    </index>
-    <key id="197" parent="167" name="CONSTRAINT_2">
+    <key id="196" parent="167" name="CONSTRAINT_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-    </key>
-    <key id="198" parent="167" name="CONSTRAINT_22">
-      <ColNames>EMAIL</ColNames>
-      <NameSurrogate>1</NameSurrogate>
     </key>
   </database-model>
 </dataSource>
