@@ -1,8 +1,6 @@
-package org.example
+package org.example.Actividad1
 import java.sql.DriverManager
-import java.sql.Connection
 import java.sql.SQLException
-import com.zaxxer.hikari.HikariDataSource
 
 
 fun main() {
