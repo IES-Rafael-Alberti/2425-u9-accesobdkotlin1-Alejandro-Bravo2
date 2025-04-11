@@ -17,10 +17,12 @@ fun main(){
 
         // ELIMINACION USUARIO
         val eliminarUsuario = baseDatos.eliminarUsuario(conexion, nombreUsuario)
-        if (eliminarUsuario){
+        if (eliminarUsuario == 1){
             println("Usuario eliminado correctamente")
-        } else{
+        } else if (eliminarUsuario == 0){
             println("Error, no se ha podido eliminar el usuario")
+        } else{
+            println("Error, en la base de datos...")
         }
 
         // ELIMINACION PRODUCTO POR PRECIO
@@ -60,18 +62,18 @@ class BaseDatos(){
         return conexion
     }
 
-    fun eliminarUsuario(conexion: Connection, nombreUsuario: String) : Boolean{
+    fun eliminarUsuario(conexion: Connection, nombreUsuario: String) : Int{
         try {
-            val eliminarUsuario = conexion.prepareStatement("DELETE FROM USUARIO WHERE NOMBRE ILIKE ?")
-            eliminarUsuario.setString(1, nombreUsuario)
-            val resultado = eliminarUsuario.executeUpdate()
-            if (resultado != 0) {
-                return false
+            val STeliminarUsuario = conexion.prepareStatement("DELETE FROM USUARIO WHERE NOMBRE ILIKE ?")
+            STeliminarUsuario.setString(1, nombreUsuario)
+            val resultado = STeliminarUsuario.executeUpdate()
+            if (resultado == 0) {
+                return 0
             }
         } catch (e: SQLException) {
-            return false
+            return -1
         }
-        return true
+        return 1
 
     }
 

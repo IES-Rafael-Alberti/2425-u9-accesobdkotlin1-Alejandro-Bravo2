@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d9d484b-9b83-49cb-b5a0-8c83b7267c4e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/segundoPrograma.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/06bb03ce-0b4e-48c3-aeca-206b26d2e46c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/06bb03ce-0b4e-48c3-aeca-206b26d2e46c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataBase/mydb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase/mydb.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataBase/mydb.mv.db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase/mydb.mv.db.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataBase/mydb.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase/mydb.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/primerPrograma.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Actividad4/cuartoPrograma.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Actividad4/cuartoPrograma.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +19,23 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="programa" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -50,29 +63,56 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build 2425-u9-accesobdkotlin1-Alejandro-Bravo2.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/alejandrobravocalderon/Documents/repositorios/2425-u9-accesobdkotlin1-Alejandro-Bravo2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build 2425-u9-accesobdkotlin1-Alejandro-Bravo2.executor": "Run",
+    "Kotlin.CuartoProgramaKt.executor": "Debug",
+    "Kotlin.MainKt.executor": "Run",
+    "Kotlin.PrimerProgramaKt.executor": "Run",
+    "Kotlin.QuintoProgramaKt.executor": "Run",
+    "Kotlin.SegundoProgramaKt.executor": "Debug",
+    "Kotlin.SextoProgramaKt.executor": "Run",
+    "Kotlin.TercerProgramaKt.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/alejandrobravocalderon/Documents/repositorios/2425-u9-accesobdkotlin1-Alejandro-Bravo2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;h2&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/Actividad1" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/Actividad3" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/Actividad2" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration name="SegundoProgramaKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Actividad2.SegundoProgramaKt" />
+      <module name="programa.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -82,6 +122,11 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.SegundoProgramaKt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -101,10 +146,28 @@
       <updated>1743755845422</updated>
       <workItem from="1743755846458" duration="13729000" />
       <workItem from="1744106011728" duration="1280000" />
+      <workItem from="1744205688565" duration="33884000" />
+      <workItem from="1744351527175" duration="264000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Actividad7/Repository.kt</url>
+          <line>71</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Actividad4/cuartoPrograma.kt</url>
+          <line>64</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
