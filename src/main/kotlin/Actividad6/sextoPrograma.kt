@@ -5,6 +5,11 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import java.sql.Connection
 import java.sql.SQLException
+import java.util.logging.Level
+import java.util.logging.Logger
+
+
+private val logger = Logger.getLogger("Actividad6")
 
 fun main(){
     val dataSource = HikariDataSource()
@@ -17,7 +22,7 @@ fun main(){
     if (resultado){
         println("Usuario agregado exitosamente")
     } else{
-        println("No se ha podido agregar el usuario")
+        logger.log(Level.WARNING,"No se ha podido agregar el usuario")
     }
 
 }

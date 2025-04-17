@@ -4,7 +4,10 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.SQLException
+import java.util.logging.Level
+import java.util.logging.Logger
 
+private val logger = Logger.getLogger("Actividad3")
 
 fun main() {
     Class.forName("org.h2.Driver")
@@ -12,29 +15,36 @@ fun main() {
     val conexion = baseDatos.conectarseBaseDatos("jdbc:h2:./DataBase/mydb")
 
     if (conexion is Connection) {
+        logger.log(Level.INFO,"Conexión con la base de datos correctamente")
         val id = 1
-        val lineasEncontradas = baseDatos.obtenerLineasPedidosPorID(conexion, id)
-        println("Cantidad de lineas de pedidos con el id $id: $lineasEncontradas")
+        try {
+
+            val lineasEncontradas = baseDatos.obtenerLineasPedidosPorID(conexion, id)
+            logger.log(Level.INFO,"Cantidad de lineas de pedidos con el id $id: $lineasEncontradas")
 
 
-        // PARTE 2
-        val nombreBuscar = "Ataulfo Rodríguez"
-        val precioTotalPorUsuario = baseDatos.obtenerPrecioTotalPorUsuario(conexion, nombreBuscar)
-        if (precioTotalPorUsuario != null) {
-            println("El precio total de las compras de $nombreBuscar es de: $precioTotalPorUsuario")
-        } else{
-            println("No se ha podido encontrar el usuario o no tiene productos comprados")
+            // PARTE 2
+            val nombreBuscar = "Ataulfo Rodríguez"
+            val precioTotalPorUsuario = baseDatos.obtenerPrecioTotalPorUsuario(conexion, nombreBuscar)
+            if (precioTotalPorUsuario != null) {
+                logger.log(Level.INFO,"El precio total de las compras de $nombreBuscar es de: $precioTotalPorUsuario")
+            } else{
+                logger.log(Level.INFO,"No se ha podido encontrar el usuario o no tiene productos comprados")
+            }
+
+            // PARTE 3
+            val nombreProducto = "Abanico"
+            val listaUsuariosEncontrados = baseDatos.obtenerUsuariosQueHayanComprado(conexion, baseDatos, nombreProducto)
+            if (listaUsuariosEncontrados != null) {
+                logger.log(Level.INFO,"Estas son las personas que han comprado el $nombreProducto: ${listaUsuariosEncontrados.joinToString(", ")}")
+            } else{
+                logger.log(Level.INFO,"Error, no se ha encontrado personas que hayan comprado ese producto")
+            }
+        } catch (e: Exception) {
+            logger.log(Level.WARNING, "Error: ${e.message}")
         }
-
-        // PARTE 3
-        val nombreProducto = "Abanico"
-        val listaUsuariosEncontrados = baseDatos.obtenerUsuariosQueHayanComprado(conexion, baseDatos, nombreProducto)
-        if (listaUsuariosEncontrados != null) {
-            println("Estas son las personas que han comprado el $nombreProducto: ${listaUsuariosEncontrados.joinToString(", ")}")
-        } else{
-            println("Error, no se ha encontrado personas que hayan comprado ese producto")
-        }
-
+    } else{
+        logger.log(Level.WARNING, "Error, no se ha podido establecer una conexión con la abse de datos")
     }
 }
 
@@ -47,11 +57,10 @@ class BaseDatos(){
         try {
             Class.forName("org.h2.Driver")
             conexion = DriverManager.getConnection(url)
-            println("Conexión exitosa")
         } catch (e: SQLException) {
-            println("No se encontró el driver jdbc: ${e.message}")
+            logger.log(Level.WARNING,"No se encontró el driver jdbc: ${e.message}")
         } catch (e: ClassNotFoundException) {
-            println("No se encontró el driver jdbc: ${e.message}")
+            logger.log(Level.WARNING,"No se encontró el driver jdbc: ${e.message}")
         }
 
         return conexion
@@ -114,9 +123,9 @@ class BaseDatos(){
 
         val precioTotalPorProducto = baseDatos.obtenerPrecioTotalPorUsuario(conexion, nombreProducto)
         if (precioTotalPorProducto == null) {
-            println("Error, no se ha podido encontrar el precio total de ese producto")
+            logger.log(Level.WARNING,"Error, no se ha podido encontrar el precio total de ese producto")
         } else {
-            println("El precio total de ese producto es: $precioTotalPorProducto")
+            logger.log(Level.INFO,"El precio total de ese producto es: $precioTotalPorProducto")
         }
 
         val listaUsuariosEncontrados =

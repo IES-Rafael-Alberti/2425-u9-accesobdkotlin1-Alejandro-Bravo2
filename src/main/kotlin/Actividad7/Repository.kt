@@ -2,6 +2,12 @@ package org.example.Actividad7
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
+import java.util.logging.Level
+import java.util.logging.Logger
+
+
+private val logger = Logger.getLogger("Actividad7Repositorio")
+
 
 class Conexion
 {
@@ -26,7 +32,7 @@ class LineaDAO(private val c: Connection) // TENGO QUE RELLENAR TODOS LOS MÉTOD
                 it.setInt(4, lineaPedido.idProducto)
                 it.executeUpdate()
             }
-        } catch (e: SQLException) {println("Error de BBDD")}
+        } catch (e: SQLException) {logger.log(Level.WARNING,"Error de BBDD")}
     }
 
     fun mostrar(idPedido: Int):MutableList<LineaPedido> {
@@ -47,7 +53,7 @@ class LineaDAO(private val c: Connection) // TENGO QUE RELLENAR TODOS LOS MÉTOD
                 }
             }
         } catch (e: SQLException) {
-            println("Error de BBDD")
+            logger.log(Level.WARNING,"Error de BBDD")
         }
         return listaLineasPedidos
     }
@@ -60,7 +66,7 @@ class LineaDAO(private val c: Connection) // TENGO QUE RELLENAR TODOS LOS MÉTOD
                 it.executeUpdate() // REVISAR
             }
         } catch (e: SQLException) {
-            println("Error de BBDD")
+            logger.log(Level.WARNING,"Error de BBDD")
         }
     }
 

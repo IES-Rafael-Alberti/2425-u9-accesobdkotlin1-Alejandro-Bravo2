@@ -3,6 +3,11 @@ package Actividad5
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
+import java.util.logging.Level
+import java.util.logging.Logger
+
+
+private val logger = Logger.getLogger("Actividad5")
 
 fun main(){
     Class.forName("org.h2.Driver")
@@ -17,7 +22,7 @@ fun main(){
         if (resultadoModificarPrecio) {
             println("Precio modificado exitosamente")
         } else{
-            println("Error, no se ha podido modificar el precio")
+            logger.log(Level.WARNING,"Error, no se ha podido modificar el precio")
         }
 
         val nuevaIdProducto = 2
@@ -25,7 +30,7 @@ fun main(){
         if (resultadoModificacionId) {
             println("ID modificado exitosamente")
         } else{
-            print("Error, no podido modificar el ID")
+            logger.log(Level.WARNING,"Error, no podido modificar el ID")
         }
 
 
@@ -41,11 +46,11 @@ class BaseDatos(){
         try {
             Class.forName("org.h2.Driver")
             conexion = DriverManager.getConnection(url)
-            println("Conexión exitosa")
+            logger.log(Level.INFO,"Conexión exitosa")
         } catch (e: SQLException) {
-            println("No se encontró el driver jdbc: ${e.message}")
+            logger.log(Level.WARNING,"No se encontró el driver jdbc: ${e.message}")
         } catch (e: ClassNotFoundException) {
-            println("No se encontró el driver jdbc: ${e.message}")
+            logger.log(Level.WARNING,"No se encontró el driver jdbc: ${e.message}")
         }
 
         return conexion
@@ -72,7 +77,7 @@ class BaseDatos(){
             queryModificarIdProducto.setString(3, producto)
             queryModificarIdProducto.executeUpdate()
         } catch (e: SQLException) {
-            println("No se ha podido modificar el id del producto por uno nuevo...")
+            logger.log(Level.WARNING,"No se ha podido modificar el id del producto por uno nuevo...")
             return false
         }
         return true

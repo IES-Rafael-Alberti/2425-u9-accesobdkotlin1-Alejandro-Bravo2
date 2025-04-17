@@ -2,7 +2,7 @@
 <dataSource name="mydb">
   <database-model serializer="dbm" dbms="H2" family-id="H2" format-version="4.53">
     <root id="1">
-      <ServerVersion>2.2.220</ServerVersion>
+      <ServerVersion>2.3.232</ServerVersion>
     </root>
     <database id="2" parent="1" name="MYDB">
       <Current>1</Current>
@@ -169,13 +169,17 @@
     <schema id="162" parent="2" name="INFORMATION_SCHEMA"/>
     <schema id="163" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-04-10.15:40:45</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-04-16.10:47:59</LastIntrospectionLocalTimestamp>
     </schema>
-    <table id="164" parent="163" name="LINEAPEDIDO"/>
-    <table id="165" parent="163" name="PEDIDO"/>
-    <table id="166" parent="163" name="PRODUCTO"/>
-    <table id="167" parent="163" name="USUARIO"/>
-    <column id="168" parent="164" name="ID">
+    <table id="164" parent="163" name="EVENTO"/>
+    <table id="165" parent="163" name="HISTORIALACCIONES"/>
+    <table id="166" parent="163" name="LINEAPEDIDO"/>
+    <table id="167" parent="163" name="PEDIDO"/>
+    <table id="168" parent="163" name="PRODUCTO"/>
+    <table id="169" parent="163" name="SUBTAREA"/>
+    <table id="170" parent="163" name="TAREA"/>
+    <table id="171" parent="163" name="USUARIO"/>
+    <column id="172" parent="164" name="ID">
       <ColumnKind>generated-stored</ColumnKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -185,59 +189,31 @@
       <SequenceStartValue>1</SequenceStartValue>
       <SequenceStoredType>INTEGER|0s</SequenceStoredType>
     </column>
-    <column id="169" parent="164" name="CANTIDAD">
+    <column id="173" parent="164" name="FECHALIMITE">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>INTEGER|0s</StoredType>
+      <StoredType>DATE|0s</StoredType>
     </column>
-    <column id="170" parent="164" name="PRECIO">
-      <NotNull>1</NotNull>
+    <column id="174" parent="164" name="ETIQUETA">
       <Position>3</Position>
-      <StoredType>NUMERIC|0s</StoredType>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="171" parent="164" name="IDPEDIDO">
+    <column id="175" parent="164" name="DESCRIPCION">
+      <NotNull>1</NotNull>
       <Position>4</Position>
-      <StoredType>INTEGER|0s</StoredType>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="172" parent="164" name="IDPRODUCTO">
-      <Position>5</Position>
-      <StoredType>INTEGER|0s</StoredType>
-    </column>
-    <foreign-key id="173" parent="164" name="CONSTRAINT_44">
-      <ColNames>IDPEDIDO</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_8</RefKeyName>
-      <RefTableName>PEDIDO</RefTableName>
-    </foreign-key>
-    <foreign-key id="174" parent="164" name="CONSTRAINT_446">
-      <ColNames>IDPRODUCTO</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_F</RefKeyName>
-      <RefTableName>PRODUCTO</RefTableName>
-    </foreign-key>
-    <index id="175" parent="164" name="PRIMARY_KEY_4">
+    <index id="176" parent="164" name="PRIMARY_KEY_7">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="176" parent="164" name="CONSTRAINT_INDEX_4">
-      <ColNames>IDPEDIDO</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <index id="177" parent="164" name="CONSTRAINT_INDEX_44">
-      <ColNames>IDPRODUCTO</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-    </index>
-    <key id="178" parent="164" name="CONSTRAINT_4">
+    <key id="177" parent="164" name="CONSTRAINT_7">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="179" parent="165" name="ID">
+    <column id="178" parent="165" name="ID">
       <ColumnKind>generated-stored</ColumnKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -247,33 +223,38 @@
       <SequenceStartValue>1</SequenceStartValue>
       <SequenceStoredType>INTEGER|0s</SequenceStoredType>
     </column>
-    <column id="180" parent="165" name="PRECIOTOTAL">
+    <column id="179" parent="165" name="DESCRIPCION">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>NUMERIC|0s</StoredType>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="181" parent="165" name="IDUSUARIO">
+    <column id="180" parent="165" name="IDTAREAMADRE">
       <Position>3</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <foreign-key id="182" parent="165" name="CONSTRAINT_8C">
-      <ColNames>IDUSUARIO</ColNames>
+    <column id="181" parent="165" name="FECHA">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>4</Position>
+      <StoredType>TIMESTAMP|0s</StoredType>
+    </column>
+    <foreign-key id="182" parent="165" name="CONSTRAINT_81B">
+      <ColNames>IDTAREAMADRE</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>restrict</OnUpdate>
-      <RefKeyName>CONSTRAINT_2</RefKeyName>
-      <RefTableName>USUARIO</RefTableName>
+      <RefKeyName>CONSTRAINT_4B</RefKeyName>
+      <RefTableName>TAREA</RefTableName>
     </foreign-key>
-    <index id="183" parent="165" name="PRIMARY_KEY_8">
+    <index id="183" parent="165" name="PRIMARY_KEY_81">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
     <index id="184" parent="165" name="CONSTRAINT_INDEX_8">
-      <ColNames>IDUSUARIO</ColNames>
+      <ColNames>IDTAREAMADRE</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="185" parent="165" name="CONSTRAINT_8">
+    <key id="185" parent="165" name="CONSTRAINT_81">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
@@ -288,32 +269,59 @@
       <SequenceStartValue>1</SequenceStartValue>
       <SequenceStoredType>INTEGER|0s</SequenceStoredType>
     </column>
-    <column id="187" parent="166" name="NOMBRE">
+    <column id="187" parent="166" name="CANTIDAD">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+      <StoredType>INTEGER|0s</StoredType>
     </column>
     <column id="188" parent="166" name="PRECIO">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>NUMERIC|0s</StoredType>
     </column>
-    <column id="189" parent="166" name="STOCK">
-      <NotNull>1</NotNull>
+    <column id="189" parent="166" name="IDPEDIDO">
       <Position>4</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <index id="190" parent="166" name="PRIMARY_KEY_F">
+    <column id="190" parent="166" name="IDPRODUCTO">
+      <Position>5</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <foreign-key id="191" parent="166" name="CONSTRAINT_44">
+      <ColNames>IDPEDIDO</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_8</RefKeyName>
+      <RefTableName>PEDIDO</RefTableName>
+    </foreign-key>
+    <foreign-key id="192" parent="166" name="CONSTRAINT_446">
+      <ColNames>IDPRODUCTO</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_F</RefKeyName>
+      <RefTableName>PRODUCTO</RefTableName>
+    </foreign-key>
+    <index id="193" parent="166" name="PRIMARY_KEY_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="191" parent="166" name="CONSTRAINT_F">
+    <index id="194" parent="166" name="CONSTRAINT_INDEX_4">
+      <ColNames>IDPEDIDO</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <index id="195" parent="166" name="CONSTRAINT_INDEX_44">
+      <ColNames>IDPRODUCTO</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="196" parent="166" name="CONSTRAINT_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="192" parent="167" name="ID">
+    <column id="197" parent="167" name="ID">
       <ColumnKind>generated-stored</ColumnKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -323,21 +331,183 @@
       <SequenceStartValue>1</SequenceStartValue>
       <SequenceStoredType>INTEGER|0s</SequenceStoredType>
     </column>
-    <column id="193" parent="167" name="NOMBRE">
+    <column id="198" parent="167" name="PRECIOTOTAL">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+      <StoredType>NUMERIC|0s</StoredType>
     </column>
-    <column id="194" parent="167" name="EMAIL">
+    <column id="199" parent="167" name="IDUSUARIO">
       <Position>3</Position>
-      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+      <StoredType>INTEGER|0s</StoredType>
     </column>
-    <index id="195" parent="167" name="PRIMARY_KEY_2">
+    <foreign-key id="200" parent="167" name="CONSTRAINT_8C">
+      <ColNames>IDUSUARIO</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_2</RefKeyName>
+      <RefTableName>USUARIO</RefTableName>
+    </foreign-key>
+    <index id="201" parent="167" name="PRIMARY_KEY_8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="196" parent="167" name="CONSTRAINT_2">
+    <index id="202" parent="167" name="CONSTRAINT_INDEX_8C">
+      <ColNames>IDUSUARIO</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="203" parent="167" name="CONSTRAINT_8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="204" parent="168" name="ID">
+      <ColumnKind>generated-stored</ColumnKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+      <SequenceInline>1</SequenceInline>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
+      <SequenceStoredType>INTEGER|0s</SequenceStoredType>
+    </column>
+    <column id="205" parent="168" name="NOMBRE">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <column id="206" parent="168" name="PRECIO">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>NUMERIC|0s</StoredType>
+    </column>
+    <column id="207" parent="168" name="STOCK">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <index id="208" parent="168" name="PRIMARY_KEY_F">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="209" parent="168" name="CONSTRAINT_F">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="210" parent="169" name="ID">
+      <ColumnKind>generated-stored</ColumnKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+      <SequenceInline>1</SequenceInline>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
+      <SequenceStoredType>INTEGER|0s</SequenceStoredType>
+    </column>
+    <column id="211" parent="169" name="IDTAREAMADRE">
+      <Position>2</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="212" parent="169" name="ESTADO">
+      <DefaultExpression>&apos;ABIERTA&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>CHARACTER VARYING(20)|0s</StoredType>
+    </column>
+    <column id="213" parent="169" name="DESCRIPCION">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <foreign-key id="214" parent="169" name="CONSTRAINT_B3">
+      <ColNames>IDTAREAMADRE</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_4B</RefKeyName>
+      <RefTableName>TAREA</RefTableName>
+    </foreign-key>
+    <index id="215" parent="169" name="PRIMARY_KEY_B">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="216" parent="169" name="CONSTRAINT_INDEX_B">
+      <ColNames>IDTAREAMADRE</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="217" parent="169" name="CONSTRAINT_B">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="218" parent="170" name="ID">
+      <ColumnKind>generated-stored</ColumnKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+      <SequenceInline>1</SequenceInline>
+      <SequenceSequenceIdentity>1(5)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
+      <SequenceStoredType>INTEGER|0s</SequenceStoredType>
+    </column>
+    <column id="219" parent="170" name="IDUSUARIOCREADOR">
+      <Position>2</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="220" parent="170" name="DESCRIPCION">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <column id="221" parent="170" name="ESTADO">
+      <DefaultExpression>&apos;ABIERTA&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>CHARACTER VARYING(20)|0s</StoredType>
+    </column>
+    <column id="222" parent="170" name="ETIQUETA">
+      <Position>5</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <index id="223" parent="170" name="PRIMARY_KEY_4B">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="224" parent="170" name="CONSTRAINT_4B">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="225" parent="171" name="ID">
+      <ColumnKind>generated-stored</ColumnKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+      <SequenceInline>1</SequenceInline>
+      <SequenceSequenceIdentity>1(2)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
+      <SequenceStoredType>INTEGER|0s</SequenceStoredType>
+    </column>
+    <column id="226" parent="171" name="NOMBRE">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <column id="227" parent="171" name="EMAIL">
+      <Position>3</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <index id="228" parent="171" name="PRIMARY_KEY_2">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="229" parent="171" name="CONSTRAINT_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
